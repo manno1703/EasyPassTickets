@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from './components/Navbar';
+import Addevent from './components/Addevent';
+import TicketForm from './components/TicketForm';
+import Gettickets from './components/Gettickets';
+import Home from './components/Home';
+import Getevents from './components/Getevents';
+import"bootstrap/dist/js/bootstrap.min.js";
+import Aboutus from './components/Aboutus';
+
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>EasyPass Tickets</h1>
       </header>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        
+        <Route path='/Addevent' element={<Addevent/>} />
+        <Route path='/TicketForm' element={<TicketForm />} />
+        <Route path='/Gettickets' element={<Gettickets/>} />
+        <Route path='/Getevents' element={<Getevents/>} />
+        <Route path='/Aboutus' element={<Aboutus/>} />
+      </Routes>
+
     </div>
+    </Router>
+
   );
 }
 
