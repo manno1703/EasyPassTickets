@@ -1,5 +1,5 @@
 import axios from "axios";
-import { use, useState } from "react";
+import { useState } from "react";
 
 const Addevent = () => {
 
@@ -9,20 +9,20 @@ const Addevent = () => {
     const [event_date, setEvent_date] = useState("");
     const [price, setPrice]=useState("");
     const [img_url, setImg_url]=useState("");
-    const [password, setPassword] = useState("");
 
     // loading, message and error hooks to handle states when the add event button is clicked
     const [loading, setLoading] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    // Create a function to help handle the submot event
+    // Create a function to help handle the submit event
     const submit = async (e) =>{
         e.preventDefault() //prevent site from reloading
 
-        // check if the user has Admin password before adding event
-        if (password !== "admin123") {
-            setError("Incorrect password! ")
+        // Retreive Token from local storage for Admin Login
+        const token = localStorage.getItem("token");
+        if (!token) {
+            setError("You must log in as an admin first.");
             return;
         }
 
@@ -43,7 +43,16 @@ const Addevent = () => {
 
         try{
             // handle the reponse from pythonanywhere
-            const response = await axios.post("https://emmanuelkinda.pythonanywhere.com/api/addevent", data);
+            const response = await axios.post(
+        "https://emmanuelkinda.pythonanywhere.com/api/addevent",
+        data,
+        {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
 
             // Set loading back to default
             setLoading("");
@@ -119,14 +128,6 @@ const Addevent = () => {
             accept="image/*"
             onChange={(e) => setImg_url(e.target.files[0])}
             required /><br/>
-
-            <input 
-            type="password"
-            value={password}
-            onChange={(e)=> setPassword(e.target.value)} 
-            className="form-control"
-            placeholder="Enter the Admin password"
-            required/><br/>
 
             <button type="submit" className="btn btn-danger w-100">Add Event</button>
 

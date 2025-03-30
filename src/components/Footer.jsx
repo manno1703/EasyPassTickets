@@ -29,7 +29,7 @@ const Footer = () => {
                 <p className="text-dark">Visit our social media pages to get updates on the latest events and discounts!</p>
             </div>
         </section>
-        <footer className="bg-dark text-white text-center p-2 mt-4 py-3 bootom-footer">
+        <footer className="bg-dark text-white text-center p-2  py-3 bootom-footer">
                 <h5>Developed by Emmanuel Kinda &copy; 2025.All rights reserved</h5>
         </footer>
     </div>

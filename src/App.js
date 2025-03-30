@@ -10,6 +10,7 @@ import Home from './components/Home';
 import Getevents from './components/Getevents';
 import"bootstrap/dist/js/bootstrap.min.js";
 import Aboutus from './components/Aboutus';
+import AdminLogin from './components/AdminLogin';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/Gettickets' element={<Gettickets/>} />
         <Route path='/Getevents' element={<Getevents/>} />
         <Route path='/Aboutus' element={<Aboutus/>} />
+        <Route path='/AdminLogin' element={<AdminLogin/>} />
       </Routes>
 
     </div>

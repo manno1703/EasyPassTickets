@@ -1,7 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleAddEventClick = (e) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      e.preventDefault(); // Prevent default navigation
+      navigate("/AdminLogin"); // Redirect to admin login if no token
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
       <NavLink className="navbar-brand" to="/">EasyPass Tickets</NavLink>
@@ -23,7 +33,7 @@ const Navbar = () => {
             <NavLink className="nav-link" to="/Aboutus">About Us</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/Addevent">Add Event</NavLink>
+            <NavLink className="nav-link" to="/Addevent" onClick={handleAddEventClick}>Add Event</NavLink>
           </li>
         </ul>
       </div>
