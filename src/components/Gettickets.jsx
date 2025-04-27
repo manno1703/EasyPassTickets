@@ -70,15 +70,27 @@ const gettickets = async (e) =>{
             </form>
 
             <div className="mt-4">
-                {tickets.length > 0 ? (
-                tickets.map((ticket, index) => (
-            <div key={index} className="card p-3 mb-2">
-                <h5>Event: {ticket.event_name || ticket.eventName}</h5>
-                <p>Customer Name: {ticket.customer_name}</p>
+            {tickets.length > 0 ? (
+                tickets.map((ticket, index) => {
+                const eventDate = new Date(ticket.event_date).toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                });
+
+                const formattedAmount = Number(ticket.amount_paid).toLocaleString();
+
+                return (
+                    <div key={index} className="card p-3 mb-2">
+                    <h5>Event: {ticket.event_name}</h5>
+                    <p>Customer Name: {ticket.customer_name}</p>
+                    <p>Event Date: {eventDate}</p>
+                    <p>Amount Paid: Ksh {formattedAmount}</p>
             </div>
-            ))
-            ) : (
-            <p>No tickets found.</p>
+      );
+    })
+  ) : (
+    <p>No tickets found.</p>
   )}
 </div>
 

@@ -21,38 +21,46 @@ const [error, setError] = useState("");
     const totalAmount = events.price * numTickets;
 
 // Function to handle submission
-const submit = async (e) =>{
-    e.preventDefault() //prevent site from reloading
+const submit = async (e) => {
+    e.preventDefault();
+    setMessage("Processing payment info...");
 
-    
+    try {
+        // Step 1: Send request to mpesa_payment first
+        const paymentData = new FormData();
+        paymentData.append('phone', customer_phone);
+        paymentData.append('amount', totalAmount);
 
-    // Update the message hook
-    setMessage("Processing your ticket, please wait...");
+        const paymentResponse = await axios.post(
+            'https://emmanuelkinda.pythonanywhere.com/api/mpesa_payment',
+            paymentData
+        );
 
-    // create a form data object and add the name and phone number
-    const data = new FormData();
+        console.log(paymentResponse.data); // Optional: See backend reply
 
-    // append name, phonenumber and event ID
-    data.append("event_id", events.event_id);
-    data.append("customer_name", customer_name);
-    data.append("customer_phone", customer_phone);
-    data.append("amount_paid", totalAmount); //pre-set to match total amount since we're not actually paying
+        setMessage("Payment initiated. Now generating ticket...");
 
-    try{
-        // Handle response from pythonanywhere
-        const reponse = await axios.post("https://emmanuelkinda.pythonanywhere.com/api/generate_ticket", data);
+        // Step 2: After payment prompt, generate the ticket
+        const ticketData = new FormData();
+        ticketData.append("event_id", events.event_id);
+        ticketData.append("customer_name", customer_name);
+        ticketData.append("customer_phone", customer_phone);
+        ticketData.append("amount_paid", totalAmount);
 
-        // set message hook
-        setMessage("Ticket generated successfully! Enjoy the event.")
-        // return hooks to their initial states
+        const ticketResponse = await axios.post(
+            "https://emmanuelkinda.pythonanywhere.com/api/generate_ticket",
+            ticketData
+        );
+
+        setMessage("Ticket generated successfully! Enjoy the event.");
         setCustomer_name("");
         setCustomer_phone("");
         setNumTickets(1);
     }
-
-    catch(error){
-        setError("Failed to generate ticket. Please try again.")
-    }   
+    catch (error) {
+        console.error(error);
+        setError("Failed to complete the process. Please try again.");
+    }
 };
 
   return (
