@@ -1,40 +1,55 @@
+import Card from "./Card";
+
 const Footer = () => {
-    return (
-    <div>
-        <section className="row  mt-4 footer-background-color">
-            <div className="col-md-4 text-left text-light">
-                <h5 className="p-2 text-center text-info">About Us</h5>
-                <p>EasyPass Tickets is your go-to platform for seamless event ticketing. We make it easy to browse, purchase, and manage your event tickets with just a few clicks.</p>
-                <p>Whether you're hosting an event or attending one, EasyPass Tickets ensures a smooth experience. Stay connected, enjoy the best events, and never miss out!</p>
-                <br/>
+  return (
+    <div className="footer mt-5 pt-4 bg-dark text-light">
+      <div className="container">
+        <div className="row text-center text-md-start">
+          {/* About Us */}
+          <div className="col-md-4 mb-4">
+            <h5 className="text-info">About Us</h5>
+            <p>
+              EasyPass Tickets is your go-to platform for seamless event ticketing.
+              Browse, purchase, and manage your tickets effortlessly.
+            </p>
+            <p>
+              Whether you're hosting or attending an event, we ensure a smooth and connected experience.
+            </p>
+          </div>
+
+          {/* Feedback */}
+          <div className="col-md-4 mb-4">
+            <h5 className="text-info text-center mb-3">Send Feedback</h5>
+            <Card />
+          </div>
+
+          {/* Connect With Us */}
+          <div className="col-md-4 mb-4 text-center">
+            <h5 className="text-info mb-3">Connect With Us</h5>
+            <div className="d-flex justify-content-center gap-3 mb-3">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <img src="images/facebook2.png" alt="Facebook" className="social-icon" />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <img src="images/instagram2.png" alt="Instagram" className="social-icon" />
+              </a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+                <img src="images/twitterx.png" alt="twitterx" className="social-icon" />
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+                <img src="images/tiktok.png" alt="tiktok" className="social-icon" />
+              </a>
             </div>
-            <div className="col-md-4 text-light">
-                <h5 className="p-2 text-center text-info">Reach Us Out</h5>
-                <input className="form-control" type="email" placeholder="Enter your email"/>
-                <br/>
-                <textarea className="form-control" rows="7" placeholder="Leave a comment"></textarea>
-                <br/>
-                <input type="submit" value="Send Message" className="btn btn-primary"/>
-            </div>
-            <div className="col-md-4">
-                <h4 className="text-center text-info">Connect With Us</h4>
-                <br/>
-                <a href="https://facebook.com">
-                <img src="images/facebook.png" alt="" className="socialspictures"/>
-                </a>
-                <a href="https://instagram.com">
-                <img src="images/instagram.png" alt="" className="socialspictures"/>
-                </a>
-                <br/><br/>
-                <p className="text-dark">Visit our social media pages to get updates on the latest events and discounts!</p>
-            </div>
-        </section>
-        <footer className="bg-dark text-white text-center p-2  py-3 bootom-footer">
-                <h5>Developed by Emmanuel Kinda &copy; 2025.All rights reserved</h5>
-        </footer>
+            <p className="text-light small">Follow us for updates and exclusive discounts on events!</p>
+          </div>
+        </div>
+      </div>
+
+      <footer className="bg-secondary text-white text-center py-3 mt-4">
+        <h6 className="mb-0">Developed by Emmanuel Kinda &copy; 2025. All rights reserved.</h6>
+      </footer>
     </div>
-    );
-    }
-     
-   
-    export default Footer;
+  );
+};
+
+export default Footer;

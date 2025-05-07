@@ -11,6 +11,7 @@ import Getevents from './components/Getevents';
 import"bootstrap/dist/js/bootstrap.min.js";
 import Aboutus from './components/Aboutus';
 import AdminLogin from './components/AdminLogin';
+import Chatbot from './components/Chatbot';
 
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
         <Route path='/Aboutus' element={<Aboutus/>} />
         <Route path='/AdminLogin' element={<AdminLogin/>} />
       </Routes>
-
+      
+      <Chatbot/>
     </div>
     </Router>
 

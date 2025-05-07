@@ -15,6 +15,15 @@ const Getevents = () => {
     // Create a navigation hook to open create ticket form
     const navigate = useNavigate();
 
+    // Pagination Hook
+    const [currentPage, setCurrentPage] = useState(1);
+    const eventsPerPage = 6;
+
+    // Scroll to top when page changes
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        }, [currentPage]);
+
     // specify the location of the images
     const img_url= "https://emmanuelkinda.pythonanywhere.com/static/images/";
 
@@ -60,45 +69,129 @@ const Getevents = () => {
 
 
   return (
-    <div className='row'>
-        <h2 className="text-center">Available Events</h2>
-        <div className="row justify-content-center mt-3 mb-3">
-            <input 
-        className="form-control w-50 mb-4"
-        type="search"
-        placeholder="Search Events..."
-        value={search}
-        onChange={(e)=> setSearch(e.target.value)} />
-        </div>
-        
-        {/* bind loading and error messages */}
-        {loading && <div className="alert alert-info text-center">{loading}</div>}
-        {error && <div className="alert alert-danger text-center">{error}</div>}
+  <>
+    <div className="container">
+      <h2 className="text-center my-4">Available Events</h2>
 
-        {filtered_events.map((events) =>(
-            <div className="col-md-4 justify-content-center mb-4" key={events.event_id}>
-                {/* This card contains info about a single event */}
-                <div className="card shadow event-card">
-                    <img src={img_url + events.img_url} className="event_img" alt="" />
-                
-                {/* Card body */}
-                <div className="card-body text-center">
-                    <h5 className="mt-2">
-                        {events.name}
-                    </h5>
-                    <p>{events.description.slice(0, 70)}...</p>
-                <b>Date: <span className="text-warning">{new Date(events.event_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span></b><br/>
-                <b>Price: <span className="text-warning">KES {events.price}</span></b><br/><br/>
-                <button className="ticket_btn" onClick={()=> navigate("/TicketForm", {state : {events}})}>Get Tickets</button> 
+      <div className="row justify-content-center mb-4">
+        <input
+          className="form-control w-50"
+          type="search"
+          placeholder="Search Events..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setCurrentPage(1); // reset to page 1 when search changes
+          }}
+        />
+      </div>
 
+      {loading && <div className="alert alert-info text-center">{loading}</div>}
+      {error && <div className="alert alert-danger text-center">{error}</div>}
 
+      <div className="row">
+        {filtered_events
+          .slice((currentPage - 1) * eventsPerPage, currentPage * eventsPerPage)
+          .map((event) => (
+            <div className="col-md-4 mb-4" key={event.event_id}>
+              <div className="card shadow-sm h-100">
+                <img
+                  src={img_url + event.img_url}
+                  className="card-img-top event_img"
+                  alt={event.name}
+                  style={{ height: "200px", objectFit: "cover" }}
+                />
+
+                <div className="card-body d-flex flex-column text-center">
+                  <h5 className="card-title">{event.name}</h5>
+                  <p className="card-text text-muted">
+                    {event.description.length > 70
+                      ? event.description.slice(0, 70) + "..."
+                      : event.description}
+                  </p>
+
+                  <p className="mb-1">
+                    <strong>Date:</strong>{" "}
+                    <span className="text-warning">
+                      {new Date(event.event_date).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
+                  </p>
+                  <p className="mb-3">
+                    <strong>Price:</strong>{" "}
+                    <span className="text-warning">KES {event.price}</span>
+                  </p>
+
+                  <button
+                    className="btn btn-primary mt-auto"
+                    onClick={() =>
+                      navigate("/TicketForm", { state: { events: event } })
+                    }
+                  >
+                    Get Tickets
+                  </button>
                 </div>
-                </div>
+              </div>
             </div>
-    ))}
-      <Footer/>
+          ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="d-flex justify-content-center mt-4">
+        <nav>
+          <ul className="pagination">
+            <li className={`page-item ${currentPage === 1 && "disabled"}`}>
+              <button
+                className="page-link"
+                onClick={() => setCurrentPage(currentPage - 1)}
+              >
+                Previous
+              </button>
+            </li>
+
+            {[...Array(Math.ceil(filtered_events.length / eventsPerPage)).keys()].map(
+              (num) => (
+                <li
+                  key={num + 1}
+                  className={`page-item ${
+                    currentPage === num + 1 ? "active" : ""
+                  }`}
+                >
+                  <button
+                    className="page-link"
+                    onClick={() => setCurrentPage(num + 1)}
+                  >
+                    {num + 1}
+                  </button>
+                </li>
+              )
+            )}
+
+            <li
+              className={`page-item ${
+                currentPage === Math.ceil(filtered_events.length / eventsPerPage) &&
+                "disabled"
+              }`}
+            >
+              <button
+                className="page-link"
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-  )
+    <Footer />
+  </>
+);
+
+
 }
 
 export default Getevents
