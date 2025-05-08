@@ -13,7 +13,7 @@
   }
 }
 
-/* .App-header {
+.App-header {
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
@@ -22,7 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-} */
+}
 
 .App-link {
   color: #61dafb;
@@ -275,7 +275,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   
   min-height: 10vh;
   text-align: center;
@@ -283,7 +283,7 @@
   position: relative;
   overflow: hidden;
   font-size: calc(10px + 2vmin);
-}
+} */
 
 .wave-background {
   background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);

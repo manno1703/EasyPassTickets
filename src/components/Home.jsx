@@ -6,7 +6,7 @@ import ImageCarousel from './Carousel';
 const Home = () => {
   return (
     <>
-      <div className="container text-center flex-grow-1 d-flex flex-column justify-content-center">
+      <div className="container text-center flex-grow-1 d-flex flex-column justify-content-center mt-2">
         <ImageCarousel className="mb-4" />
         <h1 className="display-4 mb-3 bounce-heading">Welcome to EasyPass Tickets</h1>
         <p className="lead">Your hassle-free event ticketing solution.</p>

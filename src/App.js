@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-      <header className="App-header wave-background">
+      <header className="App-header">
         <h1>EasyPass Tickets</h1>
       </header>
       <Navbar />

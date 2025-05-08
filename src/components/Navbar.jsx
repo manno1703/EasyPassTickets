@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <nav className="navbar navbar-expand-lg wave-background px-4">
       <NavLink className="navbar-brand" to="/">
       <img src="/logo.png" alt="EasyPass Tickets" style={{ width: '35px', height: '30px', marginRight: '10px' }} />
         EasyPass Tickets
