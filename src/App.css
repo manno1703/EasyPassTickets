@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
@@ -22,7 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -264,6 +264,53 @@
 }
 
 @keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.App-header {
+  
+  min-height: 10vh;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  font-size: calc(10px + 2vmin);
+}
+
+.wave-background {
+  background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+  background-size: 600% 600%;
+  animation: waveAnimation 10s ease infinite;
+}
+
+@keyframes waveAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-header {
+  font-size: 2.5rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
   from {
     opacity: 0;
     transform: translateY(-30px);
