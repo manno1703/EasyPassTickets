@@ -5,18 +5,28 @@ import ImageCarousel from './Carousel';
 
 const Home = () => {
   return (
-    <div className="text-center mt-5">
-      <ImageCarousel/>
-        <h1>Welcome to EasyPass Tickets</h1>
-        <p className="mt-4">Your hassle-free event ticketing solution.</p>
+    <>
+      <div className="container text-center flex-grow-1 d-flex flex-column justify-content-center">
+        <ImageCarousel className="mb-4" />
+        <h1 className="display-4 mb-3 bounce-heading">Welcome to EasyPass Tickets</h1>
+        <p className="lead">Your hassle-free event ticketing solution.</p>
 
         <div className="mt-4">
-            <Link to="/Getevents" className="btn btn-primary m-2">View Events</Link>
-            <Link to="/Gettickets" className="btn btn-secondary m-2">Check My Tickets</Link>
+          <Link to="/Getevents" className="btn btn-outline-primary btn-lg m-2">
+            View Events
+          </Link>
+          <Link to="/Gettickets" className="btn btn-outline-secondary btn-lg m-2">
+            Check My Tickets
+          </Link>
         </div>
-      <Footer/>
-    </div>
-  )
-}
+      </div>
 
-export default Home
+      {/* Sticky footer at bottom */}
+      <footer className="mt-auto">
+        <Footer />
+      </footer>
+    </>
+  );
+};
+
+export default Home;

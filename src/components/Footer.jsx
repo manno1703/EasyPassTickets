@@ -2,7 +2,7 @@ import Card from "./Card";
 
 const Footer = () => {
   return (
-    <div className="footer mt-5 pt-4 bg-dark text-light">
+    <div className="footer  pt-4 bg-dark text-light">
       <div className="container">
         <div className="row text-center text-md-start">
           {/* About Us */}

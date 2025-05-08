@@ -115,3 +115,146 @@
     transform: rotate(360deg);
   }
 }
+
+.ticketbcg {
+  --color1: rgb(0, 3, 49);
+  --color2: rgb(248, 255, 182);
+  width: 100%;
+  min-height: 100vh;
+  /* Ensures full screen height */
+  background-image: linear-gradient(45deg,
+      var(--color2) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--color2) 75%,
+      var(--color2)),
+    linear-gradient(135deg,
+      var(--color2) 25%,
+      var(--color1) 25%,
+      var(--color1) 75%,
+      var(--color2) 75%,
+      var(--color2));
+  background-size: 90px 90px;
+  background-position: 0 0, 135px 135px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Optional: center content vertically */
+  padding: 2rem;
+  /* Add space inside */
+}
+
+.homebcg {
+  width: 100%;
+  min-height: 100vh;
+  /* Ensures full page height */
+  --color: #E1E1E1;
+  background-color: #F3F3F3;
+  background-image:
+    linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+  background-size: 55px 55px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.background {
+  position: fixed;
+  /* Fixes the background to fill the screen */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(125% 125% at 50% 10%, #fff 40%, #63e 100%);
+  z-index: -10;
+}
+
+.heading-bg {
+  background: radial-gradient(circle at center top, #00bfff, #0066cc);
+  color: #ffffff;
+  padding: 20px 40px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1.75rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3), 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.heading-bg:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 102, 204, 0.5), 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* Adjust transparency here */
+  z-index: -1;
+}
+
+.fade-in-content {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bounce-heading {
+  animation: bounceIn 0.8s ease;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.addbcg {
+  width: 100%;
+  min-height: 100vh;
+  background: repeating-linear-gradient(45deg, #0050fc, #0050fc 20px, #0684fade 20px, #0684fade 40px);
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+

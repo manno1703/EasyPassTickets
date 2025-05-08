@@ -12,6 +12,7 @@ import"bootstrap/dist/js/bootstrap.min.js";
 import Aboutus from './components/Aboutus';
 import AdminLogin from './components/AdminLogin';
 import Chatbot from './components/Chatbot';
+import Notfound from './components/NotFound';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/Getevents' element={<Getevents/>} />
         <Route path='/Aboutus' element={<Aboutus/>} />
         <Route path='/AdminLogin' element={<AdminLogin/>} />
+        <Route path='/*' element={<Notfound/>}/>
       </Routes>
       
       <Chatbot/>

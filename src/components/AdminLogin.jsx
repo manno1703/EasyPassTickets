@@ -19,6 +19,7 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading("Please wait");
     setError("");
+    setMessage("");
 
     try {
         const response = await axios.post(
@@ -26,16 +27,26 @@ const AdminLogin = () => {
             { username, password },
             {
                 headers: { "Content-Type": "application/json" },
-                withCredentials: true, // Ensures cookies/tokens are sent if needed
+                withCredentials: true,
             }
         );
 
-        // Store JWT in localStorage
-        localStorage.setItem("token", response.data.token);
+        // Store token and setup auto-logout
+        const token = response.data.token;
+        localStorage.setItem("token", token);
         setLoading("");
         setMessage("Login successful!");
         navigate("/addevent");
+
+        // Auto logout after 6 minutes 
+        setTimeout(() => {
+            localStorage.removeItem("token");
+            alert("Session expired. Please log in again.");
+            navigate("/adminlogin");
+        }, 6 * 60 * 1000); // 6 minutes
+
     } catch (error) {
+        setLoading("");
         setError("Invalid credentials. Please try again");
     }
 };
