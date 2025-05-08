@@ -258,3 +258,20 @@
   padding-bottom: 50px;
 }
 
+.animated-header {
+  animation: slideFadeIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { FaPhoneAlt, FaTicketAlt, FaUserAlt, FaCalendarAlt, FaMoneyBillWave } from 'react-icons/fa';
+import Footer from './Footer';
 
 const Gettickets = () => {
   const [phone, setPhone] = useState("");
@@ -36,6 +37,7 @@ const Gettickets = () => {
   };
 
   return (
+    <>
     <div className="row justify-content-center ticketbcg">
       <div className="col-md-6 card shadow p-4 rounded-3">
         <h2 className="text-center mb-3"><FaTicketAlt className="mb-1" /> My Tickets</h2>
@@ -83,7 +85,10 @@ const Gettickets = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
+
 
 export default Gettickets;
