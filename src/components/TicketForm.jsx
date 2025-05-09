@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
+import Footer from './Footer';
 
 const TicketForm = () => {
 
@@ -65,7 +66,7 @@ const submit = async (e) => {
 
   return (
     <div className="row justify-content-center mt-4">
-        <div className="col-md-6 card shadow p-4">
+        <div className="col-md-6 card shadow p-4 mb-4">
             <form onSubmit={submit}>
                 {/* Bind Message and error */}
                 <h2>Book Tickets for {events.name}</h2>
@@ -100,7 +101,7 @@ const submit = async (e) => {
                 <button type='submit' className='btn btn-success'>Generate Ticket</button>
             </form>
         </div>
-      
+      <Footer/>
     </div>
   )
 }
